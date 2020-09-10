@@ -1,4 +1,5 @@
 # If you come from bash you might have to change your $PATH.
+
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -7,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="garyblessington"
+ZSH_THEME="robbyrussell"
 
 # Autojump
 #. /usr/share/autojump/autojump.zsh
@@ -159,9 +160,7 @@ cont(){
   fi
 }
 
-export WEECHAT_HOME="~/.config/weechat"
-
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=firefox
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -174,9 +173,7 @@ export BROWSER=firefox
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias h="history"
 alias p="pwd -P"
-alias s="sudo -s"
 alias CD="cd"
-alias hc='herbstclient'
 alias ff='firefox'
 # Force tmux to use 256 colors
 # Either set this or TERM=xterm (or both if tmux keeps messing up?)
@@ -184,45 +181,22 @@ alias ff='firefox'
 # clock
 #alias c="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &; clear"
 
-alias netprocs="lsof -P -i -n"
-alias up="sudo apt update && sudo apt upgrade"
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 
 # neovim
 # alias vim="nvim" # not needed since i used update-alternatives
-alias init.vim="vim ~/.config/nvim/init.vim"
+alias init.vim="nvim ~/.config/nvim/init.vim"
 
 # Quick edit
-alias xr="vim ~/.Xresources"
-alias xrc="vim ~/.wally/Xresources-clean"
-alias zshrc="vim ~/.zshrc"
-alias i3config="vim ~/.config/i3/config"
-alias polyconf="vim ~/.config/polybar/config"
-alias dunstrc="vim ~/.config/dunst/dunstrc"
-alias tint2rc="vim ~/.config/tint2/tint2rc"
-alias userChrome.css="vim ~/thm/Firefox/userChrome.css"
-alias stconf="vim ~/pro/xst/src/config.h"
-alias playlists="vim ~/.config/mpv/tubify_playlists"
-alias airlinevim="vim ~/.config/nvim/plugged/vim-airline/autoload/airline/themes/dark.vim"
-alias quteconf="vim ~/.config/qutebrowser/config.py"
-alias comptonconf="vim ~/.config/compton/compton.conf"
-alias rc.lua="vim ~/.config/awesome/rc.lua"
-alias theme.lua="vim ~/.config/awesome/themes/reasons/theme.lua"
-#alias awesomeconf="vim ~/.config/awesome/rc.lua"
-#alias subl="subl3"
-# Update qutebrowser
-alias quteup="(cd ~/pro/qutebrowser; git pull origin && tox -r -e mkvenv-pypi-old)"
-
-# nvidia optimus -> prime select 
-alias nvidia="sudo prime-select nvidia"
-alias intel="sudo prime-select intel"
-# cpu governor
-alias gameoff="sudo cpufreq-set -g powersave"
-alias gameon="sudo cpufreq-set -g performance"
-
-# translate-shell: brief
-alias t='trans -brief'
+alias xr="nvim ~/.Xresources"
+alias xrc="nvim ~/.wally/Xresources-clean"
+alias zshrc="nvim ~/.zshrc"
+alias userChrome.css="nvim ~/thm/Firefox/userChrome.css"
+alias stconf="nvim ~/pro/xst/src/config.h"
+alias picom="nvim ~/.config/compton/compton.conf"
+alias rc.lua="nvim ~/.config/awesome/rc.lua"
+alias theme.lua="nvim ~/.config/awesome/themes/reasons/theme.lua"
 
 # --- even-better-ls ---  
 # LS_COLORS=$(ls_colors_generator)
