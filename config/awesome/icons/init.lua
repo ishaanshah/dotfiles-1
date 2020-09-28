@@ -60,12 +60,13 @@ icons.text.by_class = {
     ['markdown_input'] = { symbol = "", color = x.color2 },
     ['scratchpad'] = { symbol = "", color = x.color1 },
     ['weechat'] = { symbol = "", color = x.color5 },
-    ['discord'] = { symbol = "", color = x.color5 },
+    ['discord'] = { symbol = "", color = x.color5 },
     ['6cord'] = { symbol = "", color = x.color3 },
     ['libreoffice-writer'] = { symbol = "", color = x.color4 },
     ['libreoffice-calc'] = { symbol = "", color = x.color2 },
     ['libreoffice-impress'] = { symbol = "", color = x.color1 },
     ['Godot'] = { symbol = "", color = x.color4 },
+    ['Spotify'] = { symbol = "", color = x.color6 },
 
     -- File managers
     ['Thunar'] = { symbol = "", color = x.color3 },

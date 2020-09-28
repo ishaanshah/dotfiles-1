@@ -79,14 +79,12 @@ user = {
     terminal = "kitty -1",
     floating_terminal = "kitty -1",
     browser = "firefox",
-    file_manager = "kitty -1 --class files -e ranger",
-    editor = "kitty -1 --class editor -e vim",
-    email_client = "kitty -1 --class email -e neomutt",
-    music_client = "kitty -o font_size=12 --class music -e ncmpcpp",
+    file_manager = "thunar",
+    editor = "kitty -1 --class editor -e nvim",
+    music_client = "spotify",
 
     -- >> Web Search <<
-    web_search_cmd = "xdg-open https://duckduckgo.com/?q=",
-    -- web_search_cmd = "xdg-open https://www.google.com/search?q=",
+    web_search_cmd = "xdg-open https://google.co.in/?q=",
 
     -- >> User profile <<
     profile_picture = os.getenv("HOME").."/.config/awesome/profile.png",
@@ -135,7 +133,7 @@ user = {
     -- >> Coronavirus <<
     -- Country to check for corona statistics
     -- Uses the https://corona-stats.online API
-    coronavirus_country = "germany",
+    coronavirus_country = "india",
 }
 -- ===================================================================
 
@@ -252,6 +250,7 @@ awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.max,
+    --awful.layout.suit.max.fullscreen,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.tile.top,
@@ -259,7 +258,6 @@ awful.layout.layouts = {
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.max.fullscreen,
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.magnifier,
     --awful.layout.suit.corner.ne,
@@ -306,13 +304,13 @@ awful.screen.connect_for_each_screen(function(s)
     local l = awful.layout.suit -- Alias to save time :)
     -- Tag layouts
     local layouts = {
-        l.max,
-        l.max,
-        l.max,
+        l.tile,
         l.max,
         l.tile,
         l.max,
+        l.tile,
         l.max,
+        l.tile,
         l.max,
         l.tile,
         l.max
@@ -386,8 +384,6 @@ awful.rules.rules = {
                 "DTA",  -- Firefox addon DownThemAll.
                 "copyq",  -- Includes session name in class.
                 "floating_terminal",
-                "riotclientux.exe",
-                "leagueclientux.exe",
                 "Devtools", -- Firefox devtools
             },
             class = {
@@ -508,10 +504,13 @@ awful.rules.rules = {
                 "firefox",
                 "Nightly",
                 "Steam",
+                "kitty",
                 "Lutris",
                 "Chromium",
                 "^editor$",
-                "markdown_input"
+                "markdown_input",
+                "discord",
+                "Spotify"
                 -- "Thunderbird",
             },
             type = {
@@ -855,7 +854,7 @@ awful.rules.rules = {
             instance = { "Toolkit" },
             type = { "dialog" }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[1] },
+        properties = { screen = 1, tag = awful.screen.focused().tags[2] },
     },
 
     -- Games
@@ -902,7 +901,7 @@ awful.rules.rules = {
                 "6cord",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[3] }
+        properties = { screen = 1, tag = awful.screen.focused().tags[4] }
     },
 
     -- Editing
@@ -914,7 +913,7 @@ awful.rules.rules = {
                 -- "Subl3",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[4] }
+        properties = { screen = 1, tag = awful.screen.focused().tags[1] }
     },
 
     -- System monitoring
@@ -927,15 +926,14 @@ awful.rules.rules = {
                 "htop",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[5] }
+        properties = { screen = 1, tag = awful.screen.focused().tags[8] }
     },
 
-    -- Image editing
+    -- Music
     {
         rule_any = {
             class = {
-                "Gimp",
-                "Inkscape",
+                "[Ss]potify",
             },
         },
         properties = { screen = 1, tag = awful.screen.focused().tags[6] }
@@ -1016,6 +1014,17 @@ client.connect_signal("manage", function (c)
     --     awful.placement.no_overlap(c)
     -- end
 
+end)
+
+-- Set correct properties for applications which don't set WM_CLASS before startup (eg. Spotify)
+client.connect_signal("manage", function (c)
+    if c.class == nil then
+        c.minimized = true
+        c:connect_signal("property::class", function ()
+        c.minimized = false
+        awful.rules.apply(c)
+        end)
+    end
 end)
 
 -- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later
@@ -1125,6 +1134,9 @@ awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&
       awful.spawn.with_shell("rm "..dashboard_flag_path)
     end
 end)
+
+-- Execute picom on startup
+awful.spawn.easy_async_with_shell("picom -b")
 
 -- Garbage collection
 -- Enable for lower memory consumption

@@ -68,7 +68,7 @@ end
 
 -- Create app buttons
 local browser = create_button("", x.color3, x.color11, apps.browser, "w")
-local discord = create_button("", x.color5, x.color13, apps.discord, "d")
+local discord = create_button("", x.color5, x.color13, apps.discord, "d")
 local telegram = create_button("", x.color4, x.color12, apps.telegram, "t")
 local mail = create_button("", x.color6, x.color14, apps.mail, "m")
 local files = create_button("", x.color3, x.color11, apps.file_manager, "f")
