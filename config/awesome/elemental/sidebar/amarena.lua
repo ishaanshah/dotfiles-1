@@ -163,28 +163,28 @@ local day_of_the_week = wibox.widget {
 
 -- Mpd
 local mpd_buttons = require("noodle.mpd_buttons")
-local mpd_song = require("noodle.mpd_song")
-local mpd_widget_children = mpd_song:get_all_children()
-local mpd_title = mpd_widget_children[1]
-local mpd_artist = mpd_widget_children[2]
-mpd_title.font = "sans medium 14"
-mpd_artist.font = "sans medium 10"
+local spotify_song = require("noodle.spotify")
+local spotify_widget_children = spotify_song:get_all_children()
+local spotify_title = spotify_widget_children[1]
+local spotifty_artist = spotify_widget_children[2]
+spotify_title.font = "sans medium 14"
+spotifty_artist.font = "sans medium 10"
 
 -- Set forced height in order to limit the widgets to one line.
 -- Might need to be adjusted depending on the font.
-mpd_title.forced_height = dpi(22)
-mpd_artist.forced_height = dpi(16)
+spotify_title.forced_height = dpi(22)
+spotifty_artist.forced_height = dpi(16)
 
-mpd_song:buttons(gears.table.join(
+spotify_song:buttons(gears.table.join(
     awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc -q toggle")
+        awful.spawn.with_shell("playerctl play-pause")
     end),
     awful.button({ }, 3, apps.music),
     awful.button({ }, 4, function ()
-        awful.spawn.with_shell("mpc -q prev")
+        awful.spawn.with_shell("playerctl previous")
     end),
     awful.button({ }, 5, function ()
-        awful.spawn.with_shell("mpc -q next")
+        awful.spawn.with_shell("playerctl next")
     end)
 ))
 
@@ -372,7 +372,7 @@ helpers.add_hover_cursor(ram, "hand1")
 helpers.add_hover_cursor(temperature, "hand1")
 helpers.add_hover_cursor(volume, "hand1")
 helpers.add_hover_cursor(brightness, "hand1")
-helpers.add_hover_cursor(mpd_song, "hand1")
+helpers.add_hover_cursor(spotify_song, "hand1")
 helpers.add_hover_cursor(search, "xterm")
 helpers.add_hover_cursor(cute_battery_face, "hand1")
 
@@ -488,7 +488,7 @@ sidebar:setup {
                 {
                     {
                         mpd_buttons,
-                        mpd_song,
+                        spotify_song,
                         spacing = dpi(5),
                         layout = wibox.layout.fixed.vertical
                     },

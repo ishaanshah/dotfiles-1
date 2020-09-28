@@ -1137,9 +1137,6 @@ awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&
     end
 end)
 
--- Execute picom on startup
-awful.spawn.easy_async_with_shell("picom -b")
-
 -- Garbage collection
 -- Enable for lower memory consumption
 -- ===================================================================
