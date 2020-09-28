@@ -73,6 +73,8 @@ local exit_screen_themes = {
 local exit_screen_theme = exit_screen_themes[2]
 -- ===================================================================
 -- User variables and preferences
+local secrets = require("secrets")
+
 user = {
     -- >> Default applications <<
     -- Check apps.lua for more
@@ -113,7 +115,7 @@ user = {
     -- as described in the README instructions
     -- Leave it empty in order to unlock with just the Enter key.
     -- lock_screen_custom_password = "",
-    lock_screen_custom_password = "awesome",
+    lock_screen_custom_password = secrets.lock_screen_custom_password,
 
     -- >> Battery <<
     -- You will receive notifications when your battery reaches these
@@ -125,8 +127,8 @@ user = {
     -- Get your key and find your city id at
     -- https://openweathermap.org/
     -- (You will need to make an account!)
-    openweathermap_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    openweathermap_city_id = "yyyyyy",
+    openweathermap_key = secrets.openweathermap_key,
+    openweathermap_city_id = secrets.openweathermap_city_id,
     -- > Use "metric" for Celcius, "imperial" for Fahrenheit
     weather_units = "metric",
 
