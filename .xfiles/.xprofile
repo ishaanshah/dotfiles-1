@@ -1,0 +1,8 @@
+# Load Xresources
+xrdb -load ~/.Xresources
+
+# Show dashboard on startup
+touch /tmp/awesomewm-show-dashboard
+
+# Start compositor
+picom --config ~/.config/picom/picom.conf &
