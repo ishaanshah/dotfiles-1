@@ -44,10 +44,9 @@ local dock_recently_focused = {}
 -- Order matters!
 dock_pinned_apps = {
     { class = "firefox", launcher = apps.browser },
-    { class = "Lutris", launcher = apps.lutris },
     { class = "editor", launcher = apps.editor },
-    { class = "email", launcher = apps.mail },
-    { class = "Emacs", launcher = apps.org },
+    { class = "discord", launcher = apps.discord },
+    { class = "Spotify", launcher = apps.music },
 }
 
 ----------------------------------------------------------------------------
