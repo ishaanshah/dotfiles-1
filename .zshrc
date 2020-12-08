@@ -194,9 +194,10 @@ alias xrc="nvim ~/.wally/Xresources-clean"
 alias zshrc="nvim ~/.zshrc"
 alias userChrome.css="nvim ~/thm/Firefox/userChrome.css"
 alias stconf="nvim ~/pro/xst/src/config.h"
-alias picom="nvim ~/.config/compton/compton.conf"
+alias pcm="nvim ~/.config/picom/picom.conf"
 alias rc.lua="nvim ~/.config/awesome/rc.lua"
 alias theme.lua="nvim ~/.config/awesome/themes/reasons/theme.lua"
+alias icat="kitty +kitten icat"
 
 # --- even-better-ls ---  
 # LS_COLORS=$(ls_colors_generator)
