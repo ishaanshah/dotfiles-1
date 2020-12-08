@@ -36,6 +36,7 @@ numlockx
 pavucontrol
 picom-ibhagwan-git
 playerctl
+polkit-gnome
 pulseaudio
 pulseaudio-bluetooth
 ranger

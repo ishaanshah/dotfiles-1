@@ -1,0 +1,11 @@
+# Load Xresources
+xrdb -load ~/.Xresources
+
+# Show dashboard on startup
+touch /tmp/awesomewm-show-dashboard
+
+# Start compositor
+picom --config ~/.config/picom/picom.conf &
+
+# Start Gnome Polkit authenticator
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
