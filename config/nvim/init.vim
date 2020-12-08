@@ -1,20 +1,22 @@
 " ~~~ Plugins ~~~
-" call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'shougo/deoplete.nvim'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'itchyny/lightline.vim'
-" Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-surround'
-" Plug 'lambdalisue/suda.vim'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'machakann/vim-highlightedyank'
-" Plug 'vimwiki/vimwiki'
-" Plug 'tpope/vim-markdown'
-" Plug 'nelstrom/vim-markdown-folding'
-" call plug#end()
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/NERDTree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'lambdalisue/suda.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'machakann/vim-highlightedyank'
+Plug 'shime/vim-livedown'
+call plug#end()
+
+" Dsable swapfile
+set nobackup noswapfile nowb
 
 " Highlight the line on which the cursor lives.
-set nocursorline
+set cursorline
 
 " Always show at least one line above/below the cursor.
 set scrolloff=1
@@ -51,12 +53,12 @@ map <F8> :set autochdir! autochdir?<CR>
 " Toggle vertical line
 set colorcolumn=
 fun! ToggleCC()
-  if &cc == ''
-    " set cc=1,4,21
-    set cc=80
-  else
-    set cc=
-  endif
+    if &cc == ''
+        " set cc=1,4,21
+        set cc=80
+    else
+        set cc=
+    endif
 endfun
 nnoremap <silent> <F9> :call ToggleCC()<CR>
 
@@ -81,10 +83,10 @@ imap <C-V> <esc>pa
 cmap <C-V> <C-r>0
 
 " Window Movement
-nmap <M-h> <C-w>h
-nmap <M-j> <C-w>j
-nmap <M-k> <C-w>k
-nmap <M-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " Resizing
 nmap <C-M-H> 2<C-w><
@@ -93,12 +95,8 @@ nmap <C-M-K> <C-w>-
 nmap <C-M-J> <C-w>+
 
 " Insert mode movement
-imap <M-h> <left>
-imap <M-j> <down>
-imap <M-k> <up>
-imap <M-l> <right>
-imap <M-f> <C-right>
-imap <M-b> <C-left>
+imap <C-f> <C-right>
+imap <C-b> <C-left>
 
 " Spacemacs-like keybinds
 " Change <leader> bind from default \
@@ -144,10 +142,10 @@ let g:netrw_browse_split = 0
 let g:netrw_altfile = 1
 
 " Cycle windows
-nmap <M-o> <C-W>w
-vmap <M-o> <C-W>w
-tmap <M-o> <esc><C-W>w
-imap <M-o> <esc><C-W>w
+nmap <C-o> <C-W>w
+vmap <C-o> <C-W>w
+tmap <C-o> <esc><C-W>w
+imap <C-o> <esc><C-W>w
 
 " Command mode history
 cmap <M-p> <up>
@@ -165,7 +163,7 @@ nmap <F5> :e!<cr>
 " Indentation
 set smarttab
 set expandtab
-set tabstop=8
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
@@ -204,24 +202,6 @@ augroup END
 " Substitute live preview
 set inccommand=nosplit
 
-" Markdown Folding
-let g:markdown_fold_style = 'nested'
-
-" Vimwiki
-" let g:vimwiki_list = [{'path': '~/dox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext=0
-let g:vimwiki_table_mappings=0
-let g:vimwiki_folding='expr'
-nmap <leader>vv <Plug>VimwikiIndex
-nmap <leader>vV <Plug>VimwikiTabIndex
-nmap <leader>vs <Plug>VimwikiUISelect
-nmap <leader>vi <Plug>VimwikiDiaryIndex
-nmap <leader>vdd <Plug>VimwikiMakeDiaryNote
-nmap <leader>vDD <Plug>VimwikiTabMakeDiaryNote
-nmap <leader>vdy <Plug>VimwikiMakeYesterdayDiaryNote
-nmap <leader>vdt <Plug>VimwikiMakeTomorrowDiaryNote
-nmap <M-space> <Plug>VimwikiToggleListItem
-
 " Highlighted yank (-1 for persistent)
 let g:highlightedyank_highlight_duration = 400
 
@@ -252,99 +232,95 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Lightline
 " Get default from :h lightline
 let g:lightline = {
-    \ 'colorscheme': 'lena',
-    \ }
+            \ 'colorscheme': 'lena',
+            \ }
 
 let g:lightline.active = {
-    \ 'left': [ [ 'mode', 'paste', 'sep1' ],
-    \           [ 'readonly', 'filename', 'modified' ],
-    \           [ ] ],
-    \ 'right': [ [ 'lineinfo' ],
-    \            [ 'percent' ],
-    \            [ 'filetype' ] ]
-    \ }
+            \ 'left': [ [ 'mode', 'paste', 'sep1' ],
+            \           [ 'readonly', 'filename', 'modified' ],
+            \           [ ] ],
+            \ 'right': [ [ 'lineinfo' ],
+            \            [ 'percent' ],
+            \            [ 'filetype' ] ]
+            \ }
 
 let g:lightline.inactive = {
-    \ 'left': [ [ 'mode', 'paste', 'sep1' ],
-    \           [ 'readonly', 'filename', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo' ],
-    \            [ 'percent' ],
-    \            [ 'filetype' ] ]
-    \ }
+            \ 'left': [ [ 'mode', 'paste', 'sep1' ],
+            \           [ 'readonly', 'filename', 'modified' ] ],
+            \ 'right': [ [ 'lineinfo' ],
+            \            [ 'percent' ],
+            \            [ 'filetype' ] ]
+            \ }
 
 let g:lightline.tabline = {
-    \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ ] }
+            \ 'left': [ [ 'tabs' ] ],
+            \ 'right': [ ] }
 
 let g:lightline.tab = {
-    \ 'active': [ 'tabnum', 'filename', 'modified' ],
-    \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+            \ 'active': [ 'tabnum', 'filename', 'modified' ],
+            \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
 let g:lightline.component = {
-    \ 'mode': '%{lightline#mode()}',
-    \ 'absolutepath': '%F',
-    \ 'relativepath': '%f',
-    \ 'filename': '%t',
-    \ 'modified': '%M',
-    \ 'bufnum': '%n',
-    \ 'paste': '%{&paste?"PASTE":""}',
-    \ 'readonly': '%R',
-    \ 'charvalue': '%b',
-    \ 'charvaluehex': '%B',
-    \ 'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
-    \ 'fileformat': '%{&ff}',
-    \ 'filetype': '%{&ft!=#""?&ft:"no ft"}',
-    \ 'percent': '%3p%%',
-    \ 'percentwin': '%P',
-    \ 'spell': '%{&spell?&spelllang:""}',
-    \ 'lineinfo': '%3l:%-2v',
-    \ 'line': '%l',
-    \ 'column': '%c',
-    \ 'close': '%999X X ',
-    \ 'winnr': '%{winnr()}',
-    \ 'sep1': ''
-    \}
+            \ 'mode': '%{lightline#mode()}',
+            \ 'absolutepath': '%F',
+            \ 'relativepath': '%f',
+            \ 'filename': '%t',
+            \ 'modified': '%M',
+            \ 'bufnum': '%n',
+            \ 'paste': '%{&paste?"PASTE":""}',
+            \ 'readonly': '%R',
+            \ 'charvalue': '%b',
+            \ 'charvaluehex': '%B',
+            \ 'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
+            \ 'fileformat': '%{&ff}',
+            \ 'filetype': '%{&ft!=#""?&ft:"no ft"}',
+            \ 'percent': '%3p%%',
+            \ 'percentwin': '%P',
+            \ 'spell': '%{&spell?&spelllang:""}',
+            \ 'lineinfo': '%3l:%-2v',
+            \ 'line': '%l',
+            \ 'column': '%c',
+            \ 'close': '%999X X ',
+            \ 'winnr': '%{winnr()}',
+            \ 'sep1': ''
+            \}
 
 let g:lightline.mode_map = {
-    \ 'n' : 'N',
-    \ 'i' : 'I',
-    \ 'R' : 'R',
-    \ 'v' : 'V',
-    \ 'V' : 'L',
-    \ "\<C-v>": 'B',
-    \ 'c' : 'C',
-    \ 's' : 'S',
-    \ 'S' : 'S-LINE',
-    \ "\<C-s>": 'S-BLOCK',
-    \ 't': 'T',
-    \ }
+            \ 'n' : 'N',
+            \ 'i' : 'I',
+            \ 'R' : 'R',
+            \ 'v' : 'V',
+            \ 'V' : 'L',
+            \ "\<C-v>": 'B',
+            \ 'c' : 'C',
+            \ 's' : 'S',
+            \ 'S' : 'S-LINE',
+            \ "\<C-s>": 'S-BLOCK',
+            \ 't': 'T',
+            \ }
 
 
 let g:lightline.separator = {
-    \   'left': '', 'right': ''
-    \}
+            \   'left': '', 'right': ''
+            \}
 let g:lightline.subseparator = {
-    \   'left': '', 'right': '' 
-    \}
+            \   'left': '', 'right': '' 
+            \}
 
 let g:lightline.tabline_separator = g:lightline.separator
 let g:lightline.tabline_subseparator = g:lightline.subseparator
 
 let g:lightline.enable = {
-    \ 'statusline': 1,
-    \ 'tabline': 1
-    \ }
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+            \ 'statusline': 1,
+            \ 'tabline': 1
+            \ }
 
 " Clear search highlighting with Escape key
 nnoremap <silent><esc> :noh<return><esc>
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
+    set t_Co=16
 endif
 
 set wildmenu
@@ -358,6 +334,22 @@ set fillchars=vert::
 
 " Restore last cursor position and marks on open
 au BufReadPost *
-         \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' 
-         \ |   exe "normal! g`\""
-         \ | endif
+            \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' 
+            \ |   exe "normal! g`\""
+            \ | endif
+
+" For buffer navigation
+nnoremap ]b :bn!<cr>
+nnoremap [b :bp!<cr>
+nnoremap ]B :bfirst!<cr>
+nnoremap ]B :blast!<cr>
+tnoremap ]b <C-\><C-n>:bn!<cr>
+tnoremap [b <C-\><C-n>:bp!<cr>
+tnoremap ]B <C-\><C-n>:bfirst!<cr>
+tnoremap ]B <C-\><C-n>:blast!<cr>
+
+" For closing buffer without closing window
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
+
+" Strip trailing whitespaces
+:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
