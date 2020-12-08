@@ -18,7 +18,7 @@ end
 -- Sleeps until spotify changes state (pause/play/next/prev)
 local spotify_script = [[
   sh -c '
-    playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}' --follow
+    playerctl metadata --player 'spotify' --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}' --follow
   ']]
 
 -- Kill old playerctl process

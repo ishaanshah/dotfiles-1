@@ -28,10 +28,11 @@ local app_config = {
     ['night_mode'] = { icon = "", title = false },
     ['NetworkManager'] = { icon = "", title = true },
     ['youtube'] = { icon = "", title = true },
-    ['mpd'] = { icon = "", title = true },
+    ['Spotify'] = { icon = "", title = true },
     ['mpv'] = { icon = "", title = true },
     ['keyboard'] = { icon = "", title = false },
     ['email'] = { icon = "", title = true },
+    ['discord'] = {icon = "", title = true }
 }
 
 local urgency_color = {

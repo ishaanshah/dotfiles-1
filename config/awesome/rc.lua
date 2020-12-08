@@ -846,6 +846,8 @@ awful.rules.rules = {
         rule_any = {
             class = {
                 "firefox",
+                "Chromium",
+                "Chromium-browser",
                 "Nightly",
                 -- "qutebrowser",
             },
@@ -890,8 +892,6 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Chromium",
-                "Chromium-browser",
                 "discord",
                 "[Ii][Rr][Cc][Cc]loud",
                 "TelegramDesktop",

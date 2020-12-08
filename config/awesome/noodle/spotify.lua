@@ -56,11 +56,6 @@ awesome.connect_signal("evil::spotify", function(artist, title, status)
     spotify_artist.markup =
         "<span foreground='" .. artist_fg .."'>"
         .. artist .. "</span>"
-
-    -- Example notification (might not be needed if spotify already sends one)
-    if status == "playing" then
-        naughty.notify({ title = "Spotify | Now Playing", message = title.." by "..artist })
-    end
 end)
 
 return spotify_widget
