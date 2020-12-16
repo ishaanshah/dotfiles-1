@@ -232,7 +232,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Lightline
 " Get default from :h lightline
 let g:lightline = {
-            \ 'colorscheme': 'lena',
+            \ 'colorscheme': 'nord',
             \ }
 
 let g:lightline.active = {
@@ -329,7 +329,7 @@ set encoding=utf8
 scriptencoding utf-8
 
 " Colorscheme
-colorscheme lena
+colorscheme nord
 set fillchars=vert::
 
 " Restore last cursor position and marks on open

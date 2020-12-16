@@ -525,7 +525,7 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey, shiftkey }, "F4", function() awful.spawn(user.terminal .. " -e 'ncmpcpp -c ~/.config/ncmpcpp/config_visualizer -s visualizer'") end,
         {description = "ncmpcpp", group = "launcher"}),
     -- Network dialog: nmapplet rofi frontend
-    awful.key({ superkey }, "F11", function() awful.spawn("networks-rofi") end,
+    awful.key({ superkey }, "F11", function() awful.spawn("networkmanager_dmenu") end,
         {description = "spawn network dialog", group = "launcher"}),
     -- Toggle sidebar
     awful.key({ superkey }, "grave", function() sidebar_toggle() end,

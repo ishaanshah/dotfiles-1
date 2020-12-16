@@ -23,22 +23,43 @@ URxvt.scrollBar: off
 URxvt.font: xft:monospace:size=12
 URxvt.internalBorder:     22
 ! =================
-*background:	#323F4E
-*foreground:	#F8F8F2
-*cursorColor:	#F8F8F2
-*color0:	#3D4C5F
-*color1:	#F48FB1
-*color2:	#A1EFD3
-*color3:	#F1FA8C
-*color4:	#92B6F4
-*color5:	#BD99FF
-*color6:	#87DFEB
-*color7:	#F8F8F2
-*color8:	#56687E
-*color9:	#EE4F84
-*color10:	#53E2AE
-*color11:	#F1FF52
-*color12:	#6498EF
-*color13:	#985EFF
-*color14:	#24D1E7
-*color15:	#E5E5E5
+
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
+
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6

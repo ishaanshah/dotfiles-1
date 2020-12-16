@@ -1,6 +1,7 @@
 acpid
 arandr
 cmake
+chromium
 discord
 docker
 docker-compose
