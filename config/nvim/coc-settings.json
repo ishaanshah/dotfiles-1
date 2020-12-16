@@ -1,0 +1,4 @@
+{
+    "python.linting.pylintPath": "pylint",
+    "coc.preferences.formatOnSaveFiletypes": ["*.py", "*.json", "*.js", "*.ts", "*.tsx", "*.jsx"]
+}
