@@ -10,6 +10,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 Plug 'shime/vim-livedown'
+Plug 'gko/vim-coloresque'
 call plug#end()
 
 " Dsable swapfile
