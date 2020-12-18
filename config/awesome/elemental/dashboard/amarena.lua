@@ -89,19 +89,26 @@ end
 
 
 -- User widget
-local user_picture_container = wibox.container.background()
--- user_picture_container.shape = gears.shape.circle
-user_picture_container.shape = helpers.prrect(dpi(40), true, true, false, true)
-user_picture_container.forced_height = dpi(140)
-user_picture_container.forced_width = dpi(140)
 local user_picture = wibox.widget {
     {
-        wibox.widget.imagebox(user.profile_picture),
-        widget = user_picture_container
+        {
+            {
+                widget = wibox.widget.imagebox,
+                image = user.profile_picture,
+                clip_shape = helpers.rrect(box_radius / 2),
+            },
+            shape = helpers.prrect(dpi(40), true, true, false, true),
+            layout = wibox.container.background
+        },
+        halign = 'center',
+        valign = 'center',
+        layout = wibox.container.place
     },
-    shape = helpers.rrect(box_radius / 2),
-    widget = wibox.container.background
+    height = dpi(140),
+    width = dpi(140),
+    layout = wibox.container.constraint
 }
+
 local username = os.getenv("USER")
 local user_text = wibox.widget.textbox(username:upper())
 user_text.font = "San Francisco Display Heavy 20"

@@ -89,7 +89,7 @@ user = {
     web_search_cmd = "xdg-open https://google.co.in/?q=",
 
     -- >> User profile <<
-    profile_picture = os.getenv("HOME").."/.config/awesome/profile.png",
+    profile_picture = os.getenv("HOME").."/.config/awesome/profile.jpg",
 
     -- Directories with fallback values
     dirs = {
