@@ -358,12 +358,12 @@ keys.globalkeys = gears.table.join(
     -- Brightness
     awful.key( { }, "XF86MonBrightnessDown",
         function()
-            awful.spawn.with_shell("light -U 10")
+            awful.spawn.with_shell("light -U 5")
         end,
         {description = "decrease brightness", group = "brightness"}),
     awful.key( { }, "XF86MonBrightnessUp",
         function()
-            awful.spawn.with_shell("light -A 10")
+            awful.spawn.with_shell("light -A 5")
         end,
         {description = "increase brightness", group = "brightness"}),
 
@@ -525,7 +525,10 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey, shiftkey }, "F4", function() awful.spawn(user.terminal .. " -e 'ncmpcpp -c ~/.config/ncmpcpp/config_visualizer -s visualizer'") end,
         {description = "ncmpcpp", group = "launcher"}),
     -- Network dialog: nmapplet rofi frontend
-    awful.key({ superkey }, "F11", function() awful.spawn("networkmanager_dmenu") end,
+    awful.key({ superkey }, "F10", function() awful.spawn("networkmanager_dmenu") end,
+        {description = "spawn network dialog", group = "launcher"}),
+    -- Bluetooth dialog: rofi-bluetooth
+    awful.key({ superkey }, "F11", function() awful.spawn("rofi-bluetooth") end,
         {description = "spawn network dialog", group = "launcher"}),
     -- Toggle sidebar
     awful.key({ superkey }, "grave", function() sidebar_toggle() end,

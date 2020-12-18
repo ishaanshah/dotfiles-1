@@ -5,7 +5,7 @@ xrdb -load ~/.Xresources
 touch /tmp/awesomewm-show-dashboard
 
 # Start compositor
-picom --config ~/.config/picom/picom.conf &
+picom --experimental-backends --config ~/.config/picom/picom.conf &
 
 # Start Gnome Polkit authenticator
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

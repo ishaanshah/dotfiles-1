@@ -610,6 +610,12 @@ awful.rules.rules = {
         properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.8 }
     },
 
+    -- Bluetooth Manager
+    {
+        rule_any = { class = { "Blueman-manager" } },
+        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.6 }
+    },
+
     -- Galculator
     {
         rule_any = { class = { "Galculator" } },
