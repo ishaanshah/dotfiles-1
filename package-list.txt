@@ -36,6 +36,7 @@ nm-connection-editor
 npm
 ntp
 numlockx
+openssh
 pavucontrol
 picom-ibhagwan-git
 playerctl
