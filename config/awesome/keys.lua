@@ -384,23 +384,6 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "raise volume", group = "volume"}),
 
-    -- Volume Control with alt+F1/F2/F3
-    awful.key( { altkey }, "F1",
-        function()
-            helpers.volume_control(0)
-        end,
-        {description = "(un)mute volume", group = "volume"}),
-    awful.key( { altkey }, "F2",
-        function()
-            helpers.volume_control(-5)
-        end,
-        {description = "lower volume", group = "volume"}),
-    awful.key( { altkey }, "F3",
-        function()
-            helpers.volume_control(5)
-        end,
-        {description = "raise volume", group = "volume"}),
-
     -- Screenkey toggle
     awful.key( { superkey }, "F12", apps.screenkey,
         {description = "toggle screenkey", group = "screenshots"}),
@@ -507,19 +490,16 @@ keys.globalkeys = gears.table.join(
                                  end,
         {description = "App drawer", group = "custom"}),
 
-    -- Pomodoro timer
-    awful.key({ superkey }, "slash", function()
-        awful.spawn.with_shell("pomodoro")
-                                     end,
-        {description = "pomodoro", group = "launcher"}),
     -- Spawn file manager
     awful.key({ superkey }, "F2", apps.file_manager,
         {description = "file manager", group = "launcher"}),
     -- Spawn music client
     awful.key({ superkey }, "F3", apps.music,
         {description = "music client", group = "launcher"}),
+    awful.key({ superkey }, "F4", function() awful.spawn("firefox") end,
+        {description = "firefox", group = "launcher"}),
     -- Spawn cava in a terminal
-    awful.key({ superkey }, "F4", function() awful.spawn("visualizer") end,
+    awful.key({ superkey }, "F5", function() awful.spawn("visualizer") end,
         {description = "cava", group = "launcher"}),
     -- Network dialog: nmapplet rofi frontend
     awful.key({ superkey }, "F10", function() awful.spawn("networkmanager_dmenu") end,
@@ -527,20 +507,15 @@ keys.globalkeys = gears.table.join(
     -- Bluetooth dialog: rofi-bluetooth
     awful.key({ superkey }, "F11", function() awful.spawn("rofi-bluetooth") end,
         {description = "spawn bluetooth dialog", group = "launcher"}),
+    -- Bluetooth dialog: blueman-manager
+    awful.key({ superkey, shiftkey }, "F11", function() awful.spawn("blueman-manager") end,
+        {description = "spawn bluetooth dialog", group = "launcher"}),
     -- Toggle sidebar
     awful.key({ superkey }, "grave", function() sidebar_toggle() end,
         {description = "show or hide sidebar", group = "awesome"}),
     -- Toggle wibar(s)
     awful.key({ superkey }, "b", function() wibars_toggle() end,
         {description = "show or hide wibar(s)", group = "awesome"}),
-    -- Emacs (O for org mode)
-    awful.key({ superkey }, "o", apps.org,
-        {description = "emacs", group = "launcher"}),
-    -- Markdown input scratchpad (I for input)
-    -- For quickly typing markdown comments and pasting them in
-    -- the browser
-    awful.key({ superkey }, "i", apps.markdown_input,
-        {description = "markdown scratchpad", group = "launcher"}),
     -- Editor
     awful.key({ superkey }, "e", apps.editor,
         {description = "editor", group = "launcher"}),
