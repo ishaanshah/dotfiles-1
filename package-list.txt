@@ -69,3 +69,4 @@ yay
 zip
 zsh
 file-roller
+python-pip
