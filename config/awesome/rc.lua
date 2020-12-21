@@ -1136,10 +1136,20 @@ local dashboard_flag_path = "/tmp/awesomewm-show-dashboard"
 -- Check if file exists
 awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&1", function (_, __, ___, exitcode)
     if exitcode == 0 then
-      -- Show dashboard
-      if dashboard_show then dashboard_show() end
-      -- Delete the file
-      awful.spawn.with_shell("rm "..dashboard_flag_path)
+        -- Show dashboard
+        if dashboard_show then dashboard_show() end
+        -- Delete the file
+        awful.spawn.with_shell("rm "..dashboard_flag_path)
+    end
+end)
+
+-- Enable lock screen on login
+-- Add `touch /tmp/awesomewm-show-lockscreen` to your ~/.xprofle in order to make the lock screen appear on login
+local lock_screen_flag_path = "/tmp/awesomewm-show-lockscreen"
+awful.spawn.easy_async_with_shell("stat "..lock_screen_flag_path.." >/dev/null 2>&1", function (_, __, ___, exitcode)
+    if exitcode == 0 then
+        -- Show lock_screen
+        if lock_screen_show then lock_screen_show() end
     end
 end)
 

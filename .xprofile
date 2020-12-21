@@ -3,6 +3,9 @@ xrdb -load ~/.Xresources
 
 # Show dashboard on startup
 touch /tmp/awesomewm-show-dashboard
+#
+# Show lockscreen on startup
+touch /tmp/awesomewm-show-lockscreen
 
 # Start compositor
 picom --experimental-backends --config ~/.config/picom/picom.conf &

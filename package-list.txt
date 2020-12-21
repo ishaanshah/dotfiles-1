@@ -33,6 +33,7 @@ networkmanager
 networkmanager-dmenu-git
 networkmanager-openvpn
 nm-connection-editor
+nordic-theme-git
 npm
 ntp
 numlockx
@@ -42,7 +43,7 @@ picom-ibhagwan-git
 playerctl
 polkit-gnome
 pulseaudio
-pulseaudio-bluetooth
+pulseaudio-modules-bt
 ranger
 redshift
 rofi
@@ -51,7 +52,6 @@ screenkey
 spicetify-cli
 spicetify-themes-git
 spotify
-telegram-desktop
 thermald
 thunar
 thunar-archive-plugin
@@ -63,7 +63,9 @@ tree
 unzip
 vlc
 xclip
+xdotool
 xorg
 yay
 zip
 zsh
+file-roller

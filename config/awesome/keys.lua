@@ -521,15 +521,12 @@ keys.globalkeys = gears.table.join(
     -- Spawn cava in a terminal
     awful.key({ superkey }, "F4", function() awful.spawn("visualizer") end,
         {description = "cava", group = "launcher"}),
-    -- Spawn ncmpcpp in a terminal, with a special visualizer config
-    awful.key({ superkey, shiftkey }, "F4", function() awful.spawn(user.terminal .. " -e 'ncmpcpp -c ~/.config/ncmpcpp/config_visualizer -s visualizer'") end,
-        {description = "ncmpcpp", group = "launcher"}),
     -- Network dialog: nmapplet rofi frontend
     awful.key({ superkey }, "F10", function() awful.spawn("networkmanager_dmenu") end,
         {description = "spawn network dialog", group = "launcher"}),
     -- Bluetooth dialog: rofi-bluetooth
     awful.key({ superkey }, "F11", function() awful.spawn("rofi-bluetooth") end,
-        {description = "spawn network dialog", group = "launcher"}),
+        {description = "spawn bluetooth dialog", group = "launcher"}),
     -- Toggle sidebar
     awful.key({ superkey }, "grave", function() sidebar_toggle() end,
         {description = "show or hide sidebar", group = "awesome"}),
