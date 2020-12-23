@@ -8,6 +8,7 @@ discord
 docker
 docker-compose
 feh
+file-roller
 firefox
 fortune-mod
 gdb
@@ -19,6 +20,7 @@ jq
 kitty
 light-git
 lm_sensors
+lua-pam-git
 lxappearance
 maim
 make
@@ -44,6 +46,7 @@ playerctl
 polkit-gnome
 pulseaudio
 pulseaudio-modules-bt
+python-pip
 ranger
 redshift
 rofi
@@ -60,6 +63,7 @@ thunar-volman
 tlp
 transmission-gtk
 tree
+ttf-indic-otf
 unzip
 vlc
 xclip
@@ -68,5 +72,4 @@ xorg
 yay
 zip
 zsh
-file-roller
-python-pip
+unrar
