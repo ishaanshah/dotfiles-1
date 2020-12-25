@@ -402,6 +402,12 @@ function helpers.remote_watch(command, interval, output_file, callback)
         awful.spawn.easy_async_with_shell(command.." | tee "..output_file, function(out) callback(out) end)
     end
 
+    awesome.connect_signal("evil::network", function (status)
+        if status == 0 then
+            run_the_thing()
+        end
+    end)
+
     local timer
     timer = gears.timer {
         timeout = interval,

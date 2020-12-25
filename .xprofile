@@ -15,3 +15,9 @@ picom --experimental-backends --config ~/.config/picom/picom.conf &
 
 # Start Redshift
 redshift &
+
+# Start nm-applet
+nm-applet &
+
+# Start blueman-applet
+blueman-applet &

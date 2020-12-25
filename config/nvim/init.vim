@@ -11,6 +11,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 Plug 'shime/vim-livedown'
 Plug 'gko/vim-coloresque'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 " Dsable swapfile

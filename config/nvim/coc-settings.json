@@ -1,5 +1,7 @@
 {
+    "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "pylint",
     "python.sortImports.path": "isort",
+    "python.jediEnabled": false,
     "coc.preferences.formatOnSaveFiletypes": ["*.py", "*.json", "*.js", "*.ts", "*.tsx", "*.jsx"]
 }
