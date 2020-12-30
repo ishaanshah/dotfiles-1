@@ -301,6 +301,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Tags
 -- ===================================================================
+local screen_two
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     local l = awful.layout.suit -- Alias to save time :)
@@ -320,8 +321,10 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Tag names
     local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
-    -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, layouts)
+
+    if s.index == 1 then
+      awful.tag(tagnames, s, layouts)
+    end
 
     -- Create tags with seperate configuration for each tag
     -- awful.tag.add(tagnames[1], {
@@ -332,6 +335,16 @@ awful.screen.connect_for_each_screen(function(s)
     -- })
     -- ...
 end)
+
+-- Move tags to their respective screens
+for i=1,10 do
+  root.tags()[i].screen = screen[(i - 1 + screen.count()) % screen.count() + 1]
+end
+
+-- Change to first tag on each screen
+for i=1,screen.count() do
+  root.tags()[i]:view_only()
+end
 
 -- Determines how floating clients should be placed
 local floating_client_placement = function(c)
@@ -390,6 +403,7 @@ awful.rules.rules = {
             },
             class = {
                 "Gpick",
+                "arandr",
                 "Lxappearance",
                 "Nm-connection-editor",
                 "File-roller",
@@ -546,7 +560,6 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "TelegramDesktop",
                 "firefox",
                 "Nightly",
             },
@@ -645,13 +658,6 @@ awful.rules.rules = {
         callback = function (c)
             awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
         end
-    },
-
-    -- Keepass
-    {
-        rule_any = { class = { "KeePassXC" } },
-        except_any = { name = { "KeePassXC-Browser Confirm Access" }, type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.7, height = screen_height * 0.75},
     },
 
     -- Scratchpad
@@ -822,29 +828,6 @@ awful.rules.rules = {
         end
     },
 
-    -- League of Legends client QoL fixes
-    {
-        rule = { instance = "league of legends.exe" },
-        properties = {},
-        callback = function (c)
-            local matcher = function (c)
-                return awful.rules.match(c, { instance = "leagueclientux.exe" })
-            end
-            -- Minimize LoL client after game window opens
-            for c in awful.client.iterate(matcher) do
-                c.urgent = false
-                c.minimized = true
-            end
-
-            -- Unminimize LoL client after game window closes
-            c:connect_signal("unmanage", function()
-                for c in awful.client.iterate(matcher) do
-                    c.minimized = false
-                end
-            end)
-        end
-    },
-
     ---------------------------------------------
     -- Start application on specific workspace --
     ---------------------------------------------
@@ -864,35 +847,7 @@ awful.rules.rules = {
             instance = { "Toolkit" },
             type = { "dialog" }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[2] },
-    },
-
-    -- Games
-    {
-        rule_any = {
-            class = {
-                "underlords",
-                "lt-love",
-                "portal2_linux",
-                "deadcells",
-                "csgo_linux64",
-                "EtG.x86_64",
-                "factorio",
-                "dota2",
-                "Terraria.bin.x86",
-                "dontstarve_steam",
-                "Wine",
-                "trove.exe"
-            },
-            instance = {
-                "love.exe",
-                "synthetik.exe",
-                "pathofexile_x64steam.exe",
-                "leagueclient.exe",
-                "glyphclientapp.exe"
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[2] }
+        properties = { screen = root.tags()[2].screen, tag = root.tags()[2] },
     },
 
     -- Chatting
@@ -910,7 +865,7 @@ awful.rules.rules = {
                 "6cord",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[4] }
+        properties = { screen = root.tags()[4].screen, tag = root.tags()[4] }
     },
 
     -- Editing
@@ -922,7 +877,7 @@ awful.rules.rules = {
                 -- "Subl3",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[1] }
+        properties = { screen = root.tags()[1].screen, tag = root.tags()[1] }
     },
 
     -- System monitoring
@@ -935,7 +890,7 @@ awful.rules.rules = {
                 "htop",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[8] }
+        properties = { screen = root.tags()[8].screen, tag = root.tags()[8] }
     },
 
     -- Music
@@ -945,7 +900,7 @@ awful.rules.rules = {
                 "[Ss]potify",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[6] }
+        properties = { screen = root.tags()[6].screen, tag = root.tags()[6] }
     },
 
     -- Mail
@@ -958,22 +913,7 @@ awful.rules.rules = {
                 "email",
             },
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[7] }
-    },
-
-    -- Game clients/launchers
-    {
-        rule_any = {
-            class = {
-                "Steam",
-                "battle.net.exe",
-                "Lutris",
-            },
-            name = {
-                "Steam",
-            }
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[8] }
+        properties = { screen = root.tags()[7].screen, tag = root.tags()[7] }
     },
 
     -- Miscellaneous
@@ -995,7 +935,7 @@ awful.rules.rules = {
         except_any = {
             type = { "dialog" }
         },
-        properties = { screen = 1, tag = awful.screen.focused().tags[10] }
+        properties = { screen = root.tags()[10].screen, tag = root.tags()[10] }
     },
 
 }

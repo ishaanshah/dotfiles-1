@@ -726,20 +726,21 @@ for i = 1, ntags do
         awful.key({ superkey }, "#" .. i + 9,
             function ()
                 -- Tag back and forth
-                helpers.tag_back_and_forth(i)
+                -- helpers.tag_back_and_forth(i)
 
                 -- Simple tag view
-                -- local tag = mouse.screen.tags[i]
-                -- if tag then
-                -- tag:view_only()
-                -- end
+                local tag = root.tags()[i]
+                if tag then
+                    tag:view_only()
+                    awful.screen.focus(tag.screen)
+                end
             end,
             {description = "view tag #"..i, group = "tag"}),
+
         -- Toggle tag display.
         awful.key({ superkey, ctrlkey }, "#" .. i + 9,
             function ()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
+                local tag = root.tags()[i]
                 if tag then
                     awful.tag.viewtoggle(tag)
                 end
@@ -750,7 +751,7 @@ for i = 1, ntags do
         awful.key({ superkey, shiftkey }, "#" .. i + 9,
             function ()
                 if client.focus then
-                    local tag = client.focus.screen.tags[i]
+                    local tag = root.tags()[i]
                     if tag then
                         client.focus:move_to_tag(tag)
                     end
@@ -761,7 +762,7 @@ for i = 1, ntags do
         -- Move all visible clients to tag and focus that tag
         awful.key({ superkey, altkey }, "#" .. i + 9,
             function ()
-                local tag = client.focus.screen.tags[i]
+                local tag = root.tags()[i]
                 local clients = awful.screen.focused().clients
                 if tag then
                     for _, c in pairs(clients) do
@@ -771,11 +772,12 @@ for i = 1, ntags do
                 end
             end,
             {description = "move all visible clients to tag #"..i, group = "tag"}),
+
         -- Toggle tag on focused client.
         awful.key({ superkey, ctrlkey, shiftkey }, "#" .. i + 9,
             function ()
                 if client.focus then
-                    local tag = client.focus.screen.tags[i]
+                    local tag = root.tags()[i]
                     if tag then
                         client.focus:toggle_tag(tag)
                     end
