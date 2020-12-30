@@ -1,7 +1,16 @@
 {
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintPath": "pylint",
-    "python.sortImports.path": "isort",
-    "python.jediEnabled": false,
-    "coc.preferences.formatOnSaveFiletypes": ["*.py", "*.json", "*.js", "*.ts", "*.tsx", "*.jsx"]
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": "/home/ishaanshah/.local/bin/pylint",
+  "python.sortImports.path": "/home/ishaanshah/.local/bin/isort",
+  "python.formatting.autopep8Path": "/home/ishaanshah/.local/bin/autopep8",
+  "python.jediEnabled": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ]
 }

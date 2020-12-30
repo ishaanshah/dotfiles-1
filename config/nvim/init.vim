@@ -1,18 +1,19 @@
 " ~~~ Plugins ~~~
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/NERDTree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'lambdalisue/suda.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'machakann/vim-highlightedyank'
-Plug 'shime/vim-livedown'
 Plug 'gko/vim-coloresque'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'lambdalisue/suda.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'scrooloose/NERDTree'
+Plug 'shime/vim-livedown'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " Dsable swapfile

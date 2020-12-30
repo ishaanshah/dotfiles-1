@@ -21,3 +21,6 @@ nm-applet &
 
 # Start blueman-applet
 blueman-applet &
+
+# Start pasystray
+pasystray &

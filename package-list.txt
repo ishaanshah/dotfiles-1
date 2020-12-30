@@ -1,5 +1,7 @@
 acpid
 arandr
+autorandr
+bat
 battop
 blueman
 chromium
@@ -64,6 +66,7 @@ tlp
 transmission-gtk
 tree
 ttf-indic-otf
+unrar
 unzip
 vlc
 xclip
@@ -72,4 +75,3 @@ xorg
 yay
 zip
 zsh
-unrar

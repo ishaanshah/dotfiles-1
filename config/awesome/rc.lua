@@ -511,7 +511,8 @@ awful.rules.rules = {
                 "^editor$",
                 "markdown_input",
                 "discord",
-                "Spotify"
+                "Spotify",
+                "[Ff]ile-roller"
                 -- "Thunderbird",
             },
             type = {
