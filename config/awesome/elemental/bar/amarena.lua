@@ -9,26 +9,17 @@ local keys = require("keys")
 local dock_autohide_delay = 0.5 -- seconds
 
 -- {{{ Widgets
-local update_taglist = function (item, tag, index)
-    if tag.selected then
-        item.bg = beautiful.taglist_text_color_focused[index]
-    elseif tag.urgent then
-        item.bg = beautiful.taglist_text_color_urgent[index]
-    elseif #tag:clients() > 0 then
-        item.bg = beautiful.taglist_text_color_occupied[index]
-    else
-        item.bg = beautiful.taglist_text_color_empty[index]
-    end
-end
-
 local dock = require("noodle.dock")
 local dock_placement = function(w)
     return awful.placement.bottom(w)
 end
 
-local tag_colors_empty = { "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000" }
-
-local tag_colors_urgent = { x.foreground, x.foreground, x.foreground, x.foreground, x.foreground, x.foreground, x.foreground, x.foreground, x.foreground, x.foreground }
+local tag_colors_empty = {}
+local tag_colors_urgent = {}
+for i=1,#root.tags() do
+    table.insert(tag_colors_urgent, "#00000000")
+    table.insert(tag_colors_urgent, x.foreground)
+end
 
 local tag_colors_focused = {
     x.color1,
@@ -44,16 +35,16 @@ local tag_colors_focused = {
 }
 
 local tag_colors_occupied = {
-    x.color1.."45",
-    x.color5.."45",
-    x.color4.."45",
-    x.color6.."45",
-    x.color2.."45",
-    x.color3.."45",
-    x.color1.."45",
-    x.color5.."45",
-    x.color4.."45",
-    x.color6.."45",
+    x.color1.."80",
+    x.color5.."80",
+    x.color4.."80",
+    x.color6.."80",
+    x.color2.."80",
+    x.color3.."80",
+    x.color1.."80",
+    x.color5.."80",
+    x.color4.."80",
+    x.color6.."80",
 }
 
 -- Helper function that updates a taglist item
@@ -120,7 +111,8 @@ awful.screen.connect_for_each_screen(function(s)
         ontop = true,
         type = "dock",
         placement = dock_placement,
-        widget = dock
+        widget = dock,
+        screen = s
     })
     dock_placement(s.dock)
 
@@ -203,32 +195,33 @@ awful.screen.connect_for_each_screen(function(s)
         autohide()
     end)
 
-    -- Create a system tray widget
-    s.systray = wibox.widget.systray()
-    -- Create the tray box
-    s.traybox = wibox({ screen = s, width = dpi(150), height = beautiful.wibar_height, bg = "#00000000", visible = false, ontop = true})
-    s.traybox:setup {
-        {
-            {
-                nil,
-                s.systray,
-                expand = "none",
-                layout = wibox.layout.align.horizontal,
-            },
-            margins = dpi(10),
-            widget = wibox.container.margin
-        },
-        bg = beautiful.bg_systray,
-        shape = helpers.rrect(beautiful.border_radius),
-        widget = wibox.container.background
-    }
-    awful.placement.bottom_right(s.traybox, { margins = beautiful.useless_gap * 2 })
-    s.traybox:buttons(gears.table.join(
-        awful.button({ }, 2, function ()
-            s.traybox.visible = false
-        end)
-    ))
 end)
+
+-- Create a system tray widget
+local systray = wibox.widget.systray()
+-- Create the tray box
+local traybox = wibox({ screen = screen.primary, width = dpi(150), height = beautiful.wibar_height, bg = "#00000000", visible = false, ontop = true})
+traybox:setup {
+    {
+        {
+            nil,
+            systray,
+            expand = "none",
+            layout = wibox.layout.align.horizontal,
+        },
+        margins = dpi(10),
+        widget = wibox.container.margin
+    },
+    bg = beautiful.bg_systray,
+    shape = helpers.rrect(beautiful.border_radius),
+    widget = wibox.container.background
+}
+awful.placement.bottom_right(traybox, { margins = beautiful.useless_gap * 2 })
+traybox:buttons(gears.table.join(
+    awful.button({ }, 2, function ()
+        traybox.visible = false
+    end)
+))
 
 awesome.connect_signal("elemental::dismiss", function()
     local s = mouse.screen
@@ -241,6 +234,5 @@ function wibars_toggle()
     s.dock.visible = not s.dock.visible
 end
 function tray_toggle()
-    local s = awful.screen.focused()
-    s.traybox.visible = not s.traybox.visible
+    traybox.visible = not traybox.visible
 end

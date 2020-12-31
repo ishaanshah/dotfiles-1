@@ -403,7 +403,7 @@ awful.rules.rules = {
             },
             class = {
                 "Gpick",
-                "arandr",
+                "[Aa]randr",
                 "Lxappearance",
                 "Nm-connection-editor",
                 "File-roller",
